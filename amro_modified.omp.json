@@ -1,0 +1,137 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#4DFFD0",
+          "style": "plain",
+          "template": "\ueb99 {{ .UserName }} on",
+          "type": "session"
+        },
+        {
+          "foreground": "#39CCFF",
+          "properties": {
+            "folder_separator_icon": "/",
+            "style": "full"
+          },
+          "style": "plain",
+          "template": " \uf07b {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "foreground": "#20E6C2",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "fetch_stash_count": true,
+            "fetch_upstream_icon": true
+          },
+          "style": "plain",
+          "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "battery",
+          "style": "plain",
+          "foreground_templates": [
+            "{{if eq \"Charging\" .State.String}}#40c4ff{{end}}",
+            "{{if eq \"Discharging\" .State.String}}#FF6B6B{{end}}",
+            "{{if eq \"Full\" .State.String}}#4CFA81{{end}}"
+          ],
+          "template": " {{ if not .Error }}{{ .Icon }}{{ .Percentage }}%{{ end }} ",
+          "properties": {
+            "discharging_icon": " ",
+            "charging_icon": " ",
+            "charged_icon": " "
+          }
+        },
+        {
+          "type": "sysinfo",
+          "style": "plain",
+          "foreground_templates": [
+            "{{ if lt .PhysicalPercentUsed 40 }}#4CFA81{{ else if lt .PhysicalPercentUsed 70 }}#FFD93D{{ else }}#FF6B6B{{ end }}"
+          ],
+          "template": " \uf2db {{ round .PhysicalPercentUsed .Precision }}% ",
+          "properties": {
+            "precision": 2
+          }
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "newline": true,
+      "segments": [
+        {
+          "type": "time",
+          "style": "plain",
+          "foreground": "#5E81AC",
+          "template": "\uf017 {{ .CurrentDate | date \"03:04:05 PM\" }} ",
+          "properties": {
+            "time_format": "03:04:05 PM"
+          }
+        },
+        {
+          "type": "node",
+          "style": "plain",
+          "foreground": "#8BC34A",
+          "template": " \ue718 {{ .Full }} ",
+          "properties": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "react",
+          "style": "plain",
+          "foreground": "#61DAFB",
+          "template": " \ue7ba {{ .Full }} ",
+          "properties": {
+            "display_mode": "files"
+          }
+        }
+      ],
+      "type": "prompt"
+    },
+
+
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground_templates": [
+            "{{ if .Error }}#FF3333{{ else }}#4CFA81{{ end }}"
+          ],
+          "template": "{{ if .Error }}✘ {{ .Code }}{{ else }}✔ {{ end }} ",
+          "properties": {
+            "always_enabled": true
+          }
+        },
+        {
+          "foreground": "#FF6B6B",
+          "style": "plain",
+          "template": "\ue3bf ",
+          "type": "root"
+        },
+        {
+          "foreground": "#FF4E7A",
+          "style": "plain",
+          "template": "# ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "version": 3
+}
